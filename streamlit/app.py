@@ -5,6 +5,8 @@ import pickle
 with open('../notebook/model.pkl', 'rb') as file:
     lr_model = pickle.load(file)
 
+st.title("Cinema Total Sales Prediction")
+
 ticket_sold = st.text_input("Number of tickets sold")
 occu_perc = st.text_input("Occupancy percentage")
 capacity = st.text_input("Total capacity")
@@ -25,4 +27,4 @@ if st.button('Submit'):
 
     output = pow(10, lr_predict(ticket_sold, occu_perc, capacity, show_time, ticket_price, ticket_use))
 
-    st.write("Predicted revenue:", output)
+    st.success('The predicted total sales is ₹{:,.2f}'.format(output))
